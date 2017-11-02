@@ -17,7 +17,7 @@ $('#reset').click(function () {
 })
 //x o grid inputs
 $('.box').click(function(){
-  if (xTurn === true && $(this).attr('class') === 'box') {
+  if (xTurn === true && ($(this).attr('class') === 'box'|| $(this).attr('class') ==='box clear' )) {
   //add X class and x to box
   $(this).addClass('X').html('X')
   xMoves.push(parseInt($(this).attr('data-num')))
@@ -28,7 +28,7 @@ $('.box').click(function(){
   winnerCheck()
 
 
-  } else if (oTurn === true && $(this).attr('class') === 'box')  {
+} else if (oTurn === true && ($(this).attr('class') === 'box' || $(this).attr('class') ==='box clear' )) {
     //add O class and o to box
     $(this).addClass('O').html('O')
     oMoves.push(parseInt($(this).attr('data-num')))
@@ -36,19 +36,27 @@ $('.box').click(function(){
     oTurn = false;
     xTurn = true;
     whatPlayer();
+    winnerCheck();
   }
 });
 function winnerCheck() {
+  
+  if (winConditons.indexOf(xMoves) > -1){
+    alert('winner x')
+  } else if (winConditons.indexOf(oMoves) > -1)  {
+    alert('winner y')
   for (var i = 0; i < winConditons.length; i++) {
 
-    if (winConditons[i] === xMoves){
+    }
+    if (winConditons[i] === xMoves ){
       alert('winner x')
-    } else if (winConditons[i] === oMoves) {
+    } else if (winConditons[i] === oMoves)  {
       alert('winner y')
     }
+
   }
 }
-winnerCheck()
+
 function whatPlayer() {
   if (xTurn ===true){
     $('.playerTurn').html("It is X's turn")
