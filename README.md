@@ -18,9 +18,10 @@ Your deliverables:-
 9. The program should use functions, loops, JQuery selectors and JQuery events
 
 ### Deliverables
-
+8/9 win condition not present
 
 ### What went well
-
+using jquery
 
 ### Challenges
+getting javascript to realise that two arrays are identical
