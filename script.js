@@ -4,10 +4,10 @@ var oMoves = [];
 var xMoves = [];
 
 
-var winConditons = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+var $winConditons = $([[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]])
 
 $('#reset').click(function () {
-  $('.box').removeClass('X, O').html('').addClass('clear')
+  $('.box').html('').attr("class", "box clear")
   xMoves = []
   oMoves = []
   xTurn = true;
@@ -19,42 +19,53 @@ $('#reset').click(function () {
 $('.box').click(function(){
   if (xTurn === true && ($(this).attr('class') === 'box'|| $(this).attr('class') ==='box clear' )) {
   //add X class and x to box
-  $(this).addClass('X').html('X')
+  $(this).attr('class', 'box X').html('X')
   xMoves.push(parseInt($(this).attr('data-num')))
   console.log(xMoves, 'x');
   oTurn = true;
   xTurn = false;
   whatPlayer();
-  winnerCheck()
+  winnerCheck(xMoves, 'X')
 
 
 } else if (oTurn === true && ($(this).attr('class') === 'box' || $(this).attr('class') ==='box clear' )) {
     //add O class and o to box
-    $(this).addClass('O').html('O')
+    $(this).attr('class', 'box O').html('O')
     oMoves.push(parseInt($(this).attr('data-num')))
     console.log(oMoves, 'o');
     oTurn = false;
     xTurn = true;
     whatPlayer();
-    winnerCheck();
+    winnerCheck(oMoves, 'O');
   }
 });
-function winnerCheck() {
-  
-  if (winConditons.indexOf(xMoves) > -1){
-    alert('winner x')
-  } else if (winConditons.indexOf(oMoves) > -1)  {
-    alert('winner y')
-  for (var i = 0; i < winConditons.length; i++) {
-
-    }
-    if (winConditons[i] === xMoves ){
-      alert('winner x')
-    } else if (winConditons[i] === oMoves)  {
-      alert('winner y')
-    }
-
-  }
+function winnerCheck(movesArray, name) {
+  //
+  // if (winConditons.indexOf(xMoves) > -1){
+  //   alert('winner x')
+  // } else if (winConditons.indexOf(oMoves) > -1)  {
+  //   alert('winner y')
+  // for (var i = 0; i < winConditons.length; i++) {
+  //
+  //   }
+  //   if (winConditons[i] === xMoves ){
+  //     alert('winner x')
+  //   } else if (winConditons[i] === oMoves)  {
+  //     alert('winner y')
+  //   }
+  //
+  // }
+  $winConditons.each(function (index, combination) {
+    var winCounter = 0;
+    $(combination).each(function (index, number) {
+      if (movesArray.indexOf(number) !== -1) {
+        winCounter++;
+      }
+      if (winCounter === 3) {
+        alert(name + 'WINS')
+      }
+    })
+  })
 }
 
 function whatPlayer() {
