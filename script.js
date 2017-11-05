@@ -40,21 +40,6 @@ $('.box').click(function(){
   }
 });
 function winnerCheck(movesArray, name) {
-  //
-  // if (winConditons.indexOf(xMoves) > -1){
-  //   alert('winner x')
-  // } else if (winConditons.indexOf(oMoves) > -1)  {
-  //   alert('winner y')
-  // for (var i = 0; i < winConditons.length; i++) {
-  //
-  //   }
-  //   if (winConditons[i] === xMoves ){
-  //     alert('winner x')
-  //   } else if (winConditons[i] === oMoves)  {
-  //     alert('winner y')
-  //   }
-  //
-  // }
   $winConditons.each(function (index, combination) {
     var winCounter = 0;
     $(combination).each(function (index, number) {
@@ -62,7 +47,8 @@ function winnerCheck(movesArray, name) {
         winCounter++;
       }
       if (winCounter === 3) {
-        alert(name + 'WINS')
+
+        $('.playerTurn').html("Player " + name + " wins! Reset board to play again")
       }
     })
   })

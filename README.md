@@ -18,7 +18,7 @@ Your deliverables:-
 9. The program should use functions, loops, JQuery selectors and JQuery events
 
 ### Deliverables
-9/9 win condition not present
+9/9 
 
 ### What went well
 using jquery
